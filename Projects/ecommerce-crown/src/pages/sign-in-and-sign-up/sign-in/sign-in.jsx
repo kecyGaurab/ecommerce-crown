@@ -3,10 +3,9 @@ import "./sign-in.styles.scss";
 import FormInput from "../../../components/form-input/form-input.component";
 import CustomButton from "../../../components/custom-button/custom-button.component";
 
-import { signInWithGoogle } from '../../../firebase/firebase.utils'
-import { sign } from "crypto";
+import { signInWithGoogle } from "../../../firebase/firebase.utils";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
 
@@ -14,18 +13,19 @@ export default class SignIn extends Component {
       email: "",
       password: ""
     };
-    const handleSubmit = event => {
-      event.preventDefault();
-      this.setState({
-        email: "",
-        password: ""
-      });
-    };
-    const handleChange = event => {
-      const { value, name } = event.target;
-      this.setState({ [name]: value });
-    };
   }
+  handleSubmit = event => {
+    event.preventDefault();
+    this.setState({
+      email: "",
+      password: ""
+    });
+  };
+  handleChange = event => {
+    const { value, name } = event.target;
+    this.setState({ [name]: value });
+  };
+
   render() {
     return (
       <div className="sign-in">
@@ -51,12 +51,17 @@ export default class SignIn extends Component {
             required
           />
 
-          <div className='buttons'>
-          <CustomButton type="submit">Sign In </CustomButton>
-          <CustomButton onClick={signInWithGoogle} isGoogleSignIn> Sign in With Google</CustomButton>
+          <div className="buttons">
+            <CustomButton type="submit">Sign In </CustomButton>
+            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+              {" "}
+              Sign in With Google
+            </CustomButton>
           </div>
         </form>
       </div>
     );
   }
 }
+
+export default SignIn;
