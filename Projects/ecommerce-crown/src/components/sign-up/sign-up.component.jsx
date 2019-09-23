@@ -82,7 +82,7 @@ export class SignUp extends Component {
             required
           />
           <FormInput
-            type="confirmPassword"
+            type="password"
             name="confirmPassword"
             value={confirmPassword}
             onChange={this.handleChange}
