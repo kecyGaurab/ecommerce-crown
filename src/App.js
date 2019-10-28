@@ -11,7 +11,10 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { GlobalStyle } from './global.styles';
 import ProductPage from './pages/productpage/productpage.component';
 import Contact from './pages/contact/contact.component'
-import Checkout from './components/checkout/checkout.component'
+import CheckoutPage from './pages/checkout/checkout.component'
+import { selectCurrentUser } from './redux/user/user.selector'
+import { createStructuredSelector } from 'reselect'
+
 
 class App extends React.Component {
   unsubscribefromAuth = null;
@@ -50,7 +53,7 @@ class App extends React.Component {
           <Route path='/shop' component={ShopPage} />
           <Route path='/shopnow' component={ShopPage} />
           <Route path='/contact' component={Contact} />
-          <Route path='/checkout' component={Checkout} />
+          <Route exact path='/checkout' component={CheckoutPage} />
           
           <Route
             exact
@@ -69,8 +72,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({
